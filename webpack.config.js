@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');  // new line
 
 module.exports = {
+  mode: 'development',
   entry: './src/main.js',
   output: {
     filename: 'bundle.js',
@@ -25,11 +26,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader"
+        ]
+      },
+      {
+      test: /\.css$/,
         use: [
           'style-loader',
           'css-loader'
-        ]
       }
     ]
   }
